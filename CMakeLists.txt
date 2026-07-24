@@ -25,6 +25,7 @@ include_directories(
 add_library(
     visionlite
     src/image.cpp
+    src/bmp.cpp
 )
 
 
