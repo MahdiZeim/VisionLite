@@ -77,5 +77,15 @@ size_t Image::size() const
     return data.size();
 }
 
+unsigned char* Image::rawData()
+{
+    return data.data();
+}
+
+
+const unsigned char* Image::rawData() const
+{
+    return data.data();
+}
 
 }

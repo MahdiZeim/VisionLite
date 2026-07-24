@@ -1,6 +1,5 @@
-#include <iostream>
-
 #include "visionlite/bmp.hpp"
+#include "visionlite/filters.hpp"
 
 
 int main()
@@ -12,9 +11,15 @@ int main()
         );
 
 
+    auto gray =
+        visionlite::Filters::grayscale(
+            img
+        );
+
+
     visionlite::BMP::save(
-        "assets/output/result.bmp",
-        img
+        "assets/output/gray.bmp",
+        gray
     );
 
 
