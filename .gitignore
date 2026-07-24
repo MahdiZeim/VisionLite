@@ -16,3 +16,6 @@ build/
 # Debug files
 Debug/
 Release/
+
+# Generated images
+assets/output/*

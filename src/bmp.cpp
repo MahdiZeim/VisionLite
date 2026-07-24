@@ -183,14 +183,175 @@ bool BMP::save(
 )
 {
 
+    std::ofstream file(
+        filename,
+        std::ios::binary
+    );
+
+
+    if(!file)
+    {
+        return false;
+    }
+
+
+    int width =
+        image.getWidth();
+
+
+    int height =
+        image.getHeight();
+
+
+    int channels =
+        image.getChannels();
+
+
+    if(channels != 3)
+    {
+        throw std::runtime_error(
+            "Only RGB images supported"
+        );
+    }
+
+
+
+    int rowSize =
+        (width * 3 + 3) & (~3);
+
+
+
+    int imageSize =
+        rowSize * height;
+
+
+
+    BMPFileHeader fileHeader{};
+
+    fileHeader.type =
+        0x4D42;
+
+
+    fileHeader.size =
+        sizeof(BMPFileHeader)
+        +
+        sizeof(BMPInfoHeader)
+        +
+        imageSize;
+
+
+    fileHeader.offset =
+        sizeof(BMPFileHeader)
+        +
+        sizeof(BMPInfoHeader);
+
+
+
+    BMPInfoHeader infoHeader{};
+
+
+    infoHeader.size =
+        sizeof(BMPInfoHeader);
+
+
+    infoHeader.width =
+        width;
+
+
+    infoHeader.height =
+        height;
+
+
+    infoHeader.planes =
+        1;
+
+
+    infoHeader.bitCount =
+        24;
+
+
+    infoHeader.compression =
+        0;
+
+
+    infoHeader.imageSize =
+        imageSize;
+
+
+
+    file.write(
+        reinterpret_cast<char*>(&fileHeader),
+        sizeof(fileHeader)
+    );
+
+
+    file.write(
+        reinterpret_cast<char*>(&infoHeader),
+        sizeof(infoHeader)
+    );
+
+
+
+    std::vector<unsigned char> row(
+        rowSize,
+        0
+    );
+
+
+
+    for(
+        int y = height - 1;
+        y >= 0;
+        y--
+    )
+    {
+
+        for(
+            int x = 0;
+            x < width;
+            x++
+        )
+        {
+
+            int index =
+                x * 3;
+
+
+            row[index]
+                =
+                image.at(x,y,2); // B
+
+
+            row[index+1]
+                =
+                image.at(x,y,1); // G
+
+
+            row[index+2]
+                =
+                image.at(x,y,0); // R
+
+        }
+
+
+
+        file.write(
+            reinterpret_cast<char*>(row.data()),
+            rowSize
+        );
+
+    }
+
+
+
     std::cout
-        << "Save not implemented yet"
+        << "BMP Saved: "
+        << filename
         << std::endl;
 
 
-    return false;
+    return true;
 
 }
-
 
 }
