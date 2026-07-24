@@ -50,11 +50,15 @@ public:
     ) const;
 
 
+    unsigned char* rawData();
+
+    const unsigned char* rawData() const;
+
+
     size_t size() const;
 
 
 };
-
 
 }
 
