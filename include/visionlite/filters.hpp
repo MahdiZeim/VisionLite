@@ -16,6 +16,10 @@ public:
         const Image& image
     );
 
+    static Image brightness(
+    const Image& image,
+    int delta
+    );
 };
 
 }

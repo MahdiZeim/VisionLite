@@ -11,15 +11,14 @@ int main()
         );
 
 
-    auto gray =
-        visionlite::Filters::grayscale(
-            img
-        );
-
+  auto bright = visionlite::Filters::brightness(
+    img,
+    40
+    );
 
     visionlite::BMP::save(
-        "assets/output/gray.bmp",
-        gray
+    "assets/output/bright.bmp",
+    bright
     );
 
 

@@ -27,6 +27,7 @@ add_library(
     src/image.cpp
     src/bmp.cpp
     src/filters.cpp
+    src/utils.cpp
 )
 
 
