@@ -20,6 +20,10 @@ public:
     const Image& image,
     int delta
     );
+    static Image contrast(
+    const Image& image,
+    float factor
+    );
 };
 
 }

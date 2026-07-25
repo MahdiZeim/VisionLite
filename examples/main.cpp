@@ -11,16 +11,16 @@ int main()
         );
 
 
-  auto bright = visionlite::Filters::brightness(
-    img,
-    40
+ auto contrast =
+    visionlite::Filters::contrast(
+        img,
+        1.5f
     );
 
-    visionlite::BMP::save(
-    "assets/output/bright.bmp",
-    bright
-    );
-
+visionlite::BMP::save(
+    "assets/output/contrast.bmp",
+    contrast
+);
 
     return 0;
 }
