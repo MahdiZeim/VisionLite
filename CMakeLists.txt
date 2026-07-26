@@ -28,6 +28,7 @@ add_library(
     src/bmp.cpp
     src/filters.cpp
     src/utils.cpp
+    src/transform.cpp
 )
 
 
