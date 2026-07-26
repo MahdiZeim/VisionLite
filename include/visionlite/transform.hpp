@@ -2,6 +2,7 @@
 #define VISIONLITE_TRANSFORM_HPP
 
 #include "image.hpp"
+#include "pixel.hpp"
 
 #include <functional>
 
@@ -19,8 +20,13 @@ public:
         std::function<unsigned char(unsigned char)> operation
     );
 
-};
 
+    static Image applyPixel(
+        const Image& image,
+        std::function<Pixel(Pixel)> operation
+    );
+
+};
 
 }
 

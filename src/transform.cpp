@@ -65,5 +65,61 @@ Image Transform::apply(
 
 }
 
+Image Transform::applyPixel(
+    const Image& image,
+    std::function<Pixel(Pixel)> operation
+)
+{
+    int width =
+        image.getWidth();
+
+
+    int height =
+        image.getHeight();
+
+
+    Image result(
+        width,
+        height,
+        3
+    );
+
+
+    for(int y = 0; y < height; y++)
+    {
+        for(int x = 0; x < width; x++)
+        {
+
+            Pixel pixel;
+
+            pixel.r =
+                image.at(x,y,0);
+
+            pixel.g =
+                image.at(x,y,1);
+
+            pixel.b =
+                image.at(x,y,2);
+
+
+            Pixel output =
+                operation(pixel);
+
+
+            result.at(x,y,0)
+                = output.r;
+
+            result.at(x,y,1)
+                = output.g;
+
+            result.at(x,y,2)
+                = output.b;
+
+        }
+    }
+
+
+    return result;
+}
 
 }

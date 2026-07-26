@@ -11,15 +11,14 @@ int main()
         );
 
 
- auto contrast =
-    visionlite::Filters::contrast(
-        img,
-        1.5f
+ auto graysclae =
+    visionlite::Filters::grayscale(
+        img
     );
 
 visionlite::BMP::save(
-    "assets/output/contrast.bmp",
-    contrast
+    "assets/output/new-grayscale.bmp",
+     graysclae
 );
 
     return 0;
