@@ -1,6 +1,7 @@
 #include "visionlite/filters.hpp"
 #include "visionlite/utils.hpp"
 #include "visionlite/transform.hpp"
+#include "visionlite/pixel.hpp"
 
 namespace visionlite
 {
@@ -10,63 +11,56 @@ Image Filters::grayscale(
     const Image& image
 )
 {
-
-    int width =
-        image.getWidth();
-
-
-    int height =
-        image.getHeight();
-
-
-
-    Image result(
-        width,
-        height,
-        3
-    );
-
-
-
-    for(int y = 0; y < height; y++)
-    {
-
-        for(int x = 0; x < width; x++)
+    return Transform::applyPixel(
+        image,
+        [](Pixel p)
         {
-
-            unsigned char r =
-                image.at(x,y,0);
-
-
-            unsigned char g =
-                image.at(x,y,1);
-
-
-            unsigned char b =
-                image.at(x,y,2);
-
-
-
             unsigned char gray =
                 static_cast<unsigned char>(
-                    0.299 * r +
-                    0.587 * g +
-                    0.114 * b
+                    0.299 * p.r +
+                    0.587 * p.g +
+                    0.114 * p.b
+                );
+
+            return Pixel{
+                gray,
+                gray,
+                gray
+            };
+        }
+    );
+}
+
+Image Filters::threshold(
+    const Image& image,
+    unsigned char value
+)
+{
+    return Transform::applyPixel(
+        image,
+        [value](Pixel p)
+        {
+            unsigned char gray =
+                static_cast<unsigned char>(
+                    0.299 * p.r +
+                    0.587 * p.g +
+                    0.114 * p.b
                 );
 
 
+            unsigned char result =
+                gray >= value
+                ? 255
+                : 0;
 
-            result.at(x,y,0)=gray;
-            result.at(x,y,1)=gray;
-            result.at(x,y,2)=gray;
 
+            return Pixel{
+                result,
+                result,
+                result
+            };
         }
-
-    }
-
-
-    return result;
-
+    );
 }
 
 Image Filters::brightness(

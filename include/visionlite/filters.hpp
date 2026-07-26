@@ -24,6 +24,11 @@ public:
     const Image& image,
     float factor
     );
+    
+    static Image threshold(
+    const Image& image,
+    unsigned char value
+    );
 };
 
 }

@@ -11,14 +11,16 @@ int main()
         );
 
 
- auto graysclae =
-    visionlite::Filters::grayscale(
-        img
+auto binary =
+    visionlite::Filters::threshold(
+        img,
+        128
     );
 
+
 visionlite::BMP::save(
-    "assets/output/new-grayscale.bmp",
-     graysclae
+    "assets/output/threshold.bmp",
+    binary
 );
 
     return 0;
