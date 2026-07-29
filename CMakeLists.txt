@@ -31,6 +31,7 @@ add_library(
     src/transform.cpp
     src/kernel.cpp
     src/convolution.cpp
+    src/analyzer.cpp
 )
 
 

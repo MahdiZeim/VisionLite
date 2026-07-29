@@ -2,6 +2,7 @@
 #include "visionlite/filters.hpp"
 #include "visionlite/kernel.hpp"
 #include "visionlite/convolution.hpp"
+#include "visionlite/analyzer.hpp"
 #include <iostream>
 
 int main()
@@ -25,7 +26,7 @@ visionlite::BMP::save(
     binary
 );
 */
-
+/*
 auto edgeY =
     visionlite::Filters::edgeDetectY(
         img
@@ -35,7 +36,36 @@ visionlite::BMP::save(
     "assets/output/edge_y.bmp",
     edgeY
 );
+*/
 
+/*auto min =
+    visionlite::Analyzer::minIntensity(img);
+
+
+auto max =
+    visionlite::Analyzer::maxIntensity(img);
+
+
+std::cout
+    << "Min intensity: "
+    << (int)min
+    << std::endl;
+
+
+std::cout
+    << "Max intensity: "
+    << (int)max
+    << std::endl;
+*/
+
+float contrast =
+    visionlite::Analyzer::contrast(img);
+
+
+std::cout
+    << "Contrast: "
+    << contrast
+    << std::endl;
 
     return 0;
 }
