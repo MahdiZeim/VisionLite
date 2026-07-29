@@ -91,6 +91,75 @@ Kernel Kernel::gaussian3x3()
     return kernel;
 }
 
+Kernel Kernel::sharpen()
+{
+    Kernel kernel(3,3);
+
+
+    kernel.at(0,0) = 0;
+    kernel.at(1,0) = -1;
+    kernel.at(2,0) = 0;
+
+
+    kernel.at(0,1) = -1;
+    kernel.at(1,1) = 5;
+    kernel.at(2,1) = -1;
+
+
+    kernel.at(0,2) = 0;
+    kernel.at(1,2) = -1;
+    kernel.at(2,2) = 0;
+
+
+    return kernel;
+}
+
+Kernel Kernel::sobelX()
+{
+    Kernel kernel(3,3);
+
+
+    kernel.at(0,0) = -1;
+    kernel.at(1,0) = 0;
+    kernel.at(2,0) = 1;
+
+
+    kernel.at(0,1) = -2;
+    kernel.at(1,1) = 0;
+    kernel.at(2,1) = 2;
+
+
+    kernel.at(0,2) = -1;
+    kernel.at(1,2) = 0;
+    kernel.at(2,2) = 1;
+
+
+    return kernel;
+}
+
+Kernel Kernel::sobelY()
+{
+    Kernel kernel(3,3);
+
+
+    kernel.at(0,0) = -1;
+    kernel.at(1,0) = -2;
+    kernel.at(2,0) = -1;
+
+
+    kernel.at(0,1) = 0;
+    kernel.at(1,1) = 0;
+    kernel.at(2,1) = 0;
+
+
+    kernel.at(0,2) = 1;
+    kernel.at(1,2) = 2;
+    kernel.at(2,2) = 1;
+
+
+    return kernel;
+}
+
 float& Kernel::at(
     int x,
     int y

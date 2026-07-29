@@ -2,6 +2,7 @@
 #include "visionlite/utils.hpp"
 #include "visionlite/transform.hpp"
 #include "visionlite/pixel.hpp"
+#include "visionlite/convolution.hpp"
 
 namespace visionlite
 {
@@ -95,6 +96,77 @@ Image Filters::contrast(
                 )
             );
         }
+    );
+}
+
+Image Filters::boxBlur(
+    const Image& image,
+    int size
+)
+{
+    Kernel kernel =
+        Kernel::boxBlur(size);
+
+
+    return Convolution::apply(
+        image,
+        kernel
+    );
+}
+
+Image Filters::gaussianBlur(
+    const Image& image
+)
+{
+    Kernel kernel =
+        Kernel::gaussian3x3();
+
+
+    return Convolution::apply(
+        image,
+        kernel
+    );
+}
+
+Image Filters::sharpen(
+    const Image& image
+)
+{
+    Kernel kernel =
+        Kernel::sharpen();
+
+
+    return Convolution::apply(
+        image,
+        kernel
+    );
+}
+
+Image Filters::edgeDetectX(
+    const Image& image
+)
+{
+    Kernel kernel =
+        Kernel::sobelX();
+
+
+    return Convolution::apply(
+        image,
+        kernel
+    );
+}
+
+Image Filters::edgeDetectY(
+    const Image& image
+)
+{
+    Kernel kernel =
+        Kernel::sobelY();
+
+
+    return Convolution::apply(
+        image,
+        kernel
     );
 }
 

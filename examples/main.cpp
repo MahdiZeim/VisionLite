@@ -25,19 +25,15 @@ visionlite::BMP::save(
     binary
 );
 */
-    auto kernel =
-    visionlite::Kernel::boxBlur(3);
 
-
-auto blurred =
-    visionlite::Convolution::apply(
-        img,
-        kernel
+auto edgeY =
+    visionlite::Filters::edgeDetectY(
+        img
     );
 
 visionlite::BMP::save(
-    "assets/output/blur.bmp",
-    blurred
+    "assets/output/edge_y.bmp",
+    edgeY
 );
 
 

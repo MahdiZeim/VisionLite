@@ -29,6 +29,31 @@ public:
     const Image& image,
     unsigned char value
     );
+
+    static Image boxBlur(
+    const Image& image,
+    int size = 3
+    );
+
+
+    static Image gaussianBlur(
+    const Image& image
+    );
+
+
+    static Image sharpen(
+    const Image& image
+    );
+
+
+    static Image edgeDetectX(
+    const Image& image
+    );
+
+
+    static Image edgeDetectY(
+    const Image& image
+    );
 };
 
 }
