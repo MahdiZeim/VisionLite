@@ -3,6 +3,7 @@
 #include "visionlite/utils.hpp"
 
 #include <cmath>
+#include <iostream>
 
 namespace visionlite
 {
@@ -154,6 +155,103 @@ Image Enhancer::gammaCorrection(
     return output;
 }
 
+Image Enhancer::histogramEqualization(
+    const Image& image
+)
+{
+    if(image.getChannels() != 1)
+    {
+    std::cerr
+        << "Histogram equalization requires grayscale image"
+        << std::endl;
 
+    return image;
+    }
+
+    int histogram[256] = {0};
+
+
+    for(int y = 0; y < image.getHeight(); y++)
+    {
+        for(int x = 0; x < image.getWidth(); x++)
+        {
+            unsigned char pixel =
+                image.at(x, y, 0);
+
+            histogram[pixel]++;
+        }
+    }
+
+
+    int cdf[256] = {0};
+
+    cdf[0] = histogram[0];
+
+    for(int i = 1; i < 256; i++)
+    {
+        cdf[i] =
+            cdf[i - 1] + histogram[i];
+    }
+
+
+    int totalPixels =
+        image.getWidth()
+        *
+        image.getHeight();
+
+
+    int cdfMin = 0;
+
+    for(int i = 0; i < 256; i++)
+    {
+        if(cdf[i] != 0)
+        {
+            cdfMin = cdf[i];
+            break;
+        }
+    }
+
+    unsigned char lookup[256];
+
+
+    for(int i = 0; i < 256; i++)
+    {
+
+        int value =
+            ((cdf[i] - cdfMin) * 255)
+            /
+            (totalPixels - cdfMin);
+
+
+        lookup[i] =
+            clamp(value);
+    }
+
+
+    Image output(
+        image.getWidth(),
+        image.getHeight(),
+        image.getChannels()
+    );
+
+
+    for(int y = 0; y < image.getHeight(); y++)
+    {
+        for(int x = 0; x < image.getWidth(); x++)
+        {
+
+            unsigned char pixel =
+                image.at(x, y, 0);
+
+
+            output.at(x, y, 0) =
+                lookup[pixel];
+
+        }
+    }
+
+
+    return output;
+}
 
 }
