@@ -9,6 +9,7 @@ namespace visionlite
 
 class Convolution
 {
+
 public:
 
     static Image apply(

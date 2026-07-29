@@ -1,6 +1,7 @@
 #include "visionlite/bmp.hpp"
 #include "visionlite/filters.hpp"
 #include "visionlite/kernel.hpp"
+#include "visionlite/convolution.hpp"
 #include <iostream>
 
 int main()
@@ -24,21 +25,21 @@ visionlite::BMP::save(
     binary
 );
 */
-
-auto blur = visionlite::Kernel::boxBlur(3);
-
-std::cout 
-    << "Blur sum: "
-    << blur.sum()
-    << std::endl;
+    auto kernel =
+    visionlite::Kernel::boxBlur(3);
 
 
-auto gaussian = visionlite::Kernel::gaussian3x3();
+auto blurred =
+    visionlite::Convolution::apply(
+        img,
+        kernel
+    );
 
-std::cout
-    << "Gaussian sum: "
-    << gaussian.sum()
-    << std::endl;
+visionlite::BMP::save(
+    "assets/output/blur.bmp",
+    blurred
+);
+
 
     return 0;
 }
