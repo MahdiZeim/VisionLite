@@ -3,6 +3,7 @@
 #include "visionlite/kernel.hpp"
 #include "visionlite/convolution.hpp"
 #include "visionlite/analyzer.hpp"
+#include "visionlite/enhancer.hpp"
 #include <iostream>
 
 int main()
@@ -58,13 +59,31 @@ std::cout
     << std::endl;
 */
 
-float contrast =
+/*float contrast =
     visionlite::Analyzer::contrast(img);
 
 
 std::cout
     << "Contrast: "
     << contrast
+    << std::endl;*/
+
+
+    auto enhanced =
+    visionlite::Enhancer::autoBrightness(img);
+
+  /*  visionlite::BMP::save(
+    "assets/output/auto_brightness.bmp",
+    enhanced
+);*/
+
+    float newMean =
+    visionlite::Analyzer::meanIntensity(enhanced);
+
+
+std::cout
+    << "Enhanced mean intensity: "
+    << newMean
     << std::endl;
 
     return 0;

@@ -32,6 +32,7 @@ add_library(
     src/kernel.cpp
     src/convolution.cpp
     src/analyzer.cpp
+    src/enhancer.cpp
 )
 
 
