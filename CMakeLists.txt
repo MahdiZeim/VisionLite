@@ -29,6 +29,8 @@ add_library(
     src/filters.cpp
     src/utils.cpp
     src/transform.cpp
+    src/kernel.cpp
+    src/convolution.cpp
 )
 
 
