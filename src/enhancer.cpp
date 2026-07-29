@@ -2,6 +2,8 @@
 #include "visionlite/analyzer.hpp"
 #include "visionlite/utils.hpp"
 
+#include <cmath>
+
 namespace visionlite
 {
 
@@ -70,7 +72,7 @@ Image Enhancer::autoContrast(
     {
     return image;
     }
-    
+
     for(int y = 0; y < image.getHeight(); y++)
     {
         for(int x = 0; x < image.getWidth(); x++)
@@ -98,6 +100,60 @@ Image Enhancer::autoContrast(
 
     return output;
 }
+
+
+Image Enhancer::gammaCorrection(
+    const Image& image,
+    float gamma
+)
+{
+
+    Image output(
+        image.getWidth(),
+        image.getHeight(),
+        image.getChannels()
+    );
+
+
+    for(int y = 0; y < image.getHeight(); y++)
+    {
+        for(int x = 0; x < image.getWidth(); x++)
+        {
+            for(int c = 0; c < image.getChannels(); c++)
+            {
+
+                unsigned char pixel =
+                    image.at(x,y,c);
+
+
+                float normalized =
+                    pixel / 255.0f;
+
+
+                float corrected =
+                    std::pow(
+                        normalized,
+                        gamma
+                    );
+
+
+                int value =
+                    static_cast<int>(
+                        corrected * 255.0f
+                    );
+
+
+                output.at(x,y,c) =
+                    clamp(value);
+
+            }
+        }
+    }
+
+
+    return output;
+}
+
 
 
 }

@@ -68,19 +68,17 @@ std::cout
     << contrast
     << std::endl;*/
 
+    auto gammaImage =
+    visionlite::Enhancer::gammaCorrection(
+        img,
+        2.0f
+    );
+
+    visionlite::BMP::save(
+    "assets/output/gamma_2.bmp",
+    gammaImage
+    );
 
 
-    auto contrastImage =
-    visionlite::Enhancer::autoContrast(img);
-
-visionlite::BMP::save(
-    "assets/output/auto_contrast.bmp",
-    contrastImage
-);
-
-std::cout
-<< "New contrast: "
-<< visionlite::Analyzer::contrast(contrastImage)
-<< std::endl;
     return 0;
 }

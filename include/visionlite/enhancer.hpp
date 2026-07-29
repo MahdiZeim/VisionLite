@@ -19,7 +19,15 @@ public:
     static Image autoContrast(
     const Image& image
     );
-    
+
+    static Image gammaCorrection(
+    const Image& image,
+    float gamma
+    );
+
+    static Image histogramEqualization(
+    const Image& image
+    );
 };
 
 }
