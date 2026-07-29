@@ -69,22 +69,18 @@ std::cout
     << std::endl;*/
 
 
-    auto enhanced =
-    visionlite::Enhancer::autoBrightness(img);
 
-  /*  visionlite::BMP::save(
-    "assets/output/auto_brightness.bmp",
-    enhanced
-);*/
+    auto contrastImage =
+    visionlite::Enhancer::autoContrast(img);
 
-    float newMean =
-    visionlite::Analyzer::meanIntensity(enhanced);
-
+visionlite::BMP::save(
+    "assets/output/auto_contrast.bmp",
+    contrastImage
+);
 
 std::cout
-    << "Enhanced mean intensity: "
-    << newMean
-    << std::endl;
-
+<< "New contrast: "
+<< visionlite::Analyzer::contrast(contrastImage)
+<< std::endl;
     return 0;
 }

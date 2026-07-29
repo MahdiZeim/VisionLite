@@ -16,6 +16,10 @@ public:
         const Image& image
     );
 
+    static Image autoContrast(
+    const Image& image
+    );
+    
 };
 
 }
