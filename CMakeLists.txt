@@ -33,6 +33,7 @@ add_library(
     src/convolution.cpp
     src/analyzer.cpp
     src/enhancer.cpp
+    src/morphology.cpp
 )
 
 

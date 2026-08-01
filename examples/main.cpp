@@ -5,6 +5,7 @@
 #include "visionlite/analyzer.hpp"
 #include "visionlite/enhancer.hpp"
 #include <iostream>
+#include "visionlite/morphology.hpp"
 
 int main()
 {
@@ -14,6 +15,15 @@ int main()
             "assets/input/test.bmp"
         );
 
+        std::cout << "Loaded image: "
+          << img.getWidth()
+          << " x "
+          << img.getHeight()
+          << " ("
+          << img.getChannels()
+          << " channels)"
+          << std::endl;
+          
 /*
 auto binary =
     visionlite::Filters::threshold(
@@ -69,7 +79,15 @@ std::cout
     << std::endl;*/
 
 
-  
+    auto grayImage =
+    visionlite::Filters::grayscale(img);
+
+    auto blackHat = visionlite::Morphology::blackHat(grayImage);
+
+    visionlite::BMP::save(
+    "assets/output/blackHat.bmp",
+    blackHat
+);
 
    
     return 0;
