@@ -80,33 +80,22 @@ std::cout
     << contrast
     << std::endl;*/
 
-   
-auto cropCenter =
-    visionlite::Transform::crop(
-        img,
-        img.getWidth() / 4,
-        img.getHeight() / 4,
-        img.getWidth() / 2,
-        img.getHeight() / 2
-    );
+
+
+auto horizontal =
+    visionlite::Transform::flipHorizontal(img);
 
 visionlite::BMP::save(
-    "assets/output/crop_center.bmp",
-    cropCenter
+    "assets/output/flip_horizontal.bmp",
+    horizontal
 );
 
-auto cropCorner =
-    visionlite::Transform::crop(
-        img,
-        0,
-        0,
-        200,
-        200
-    );
+auto vertical =
+    visionlite::Transform::flipVertical(img);
 
 visionlite::BMP::save(
-    "assets/output/crop_corner.bmp",
-    cropCorner
+    "assets/output/flip_vertical.bmp",
+    vertical
 );
 
     return 0;

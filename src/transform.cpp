@@ -242,4 +242,67 @@ Image Transform::crop(
     return output;
 }
 
+
+Image Transform::flipHorizontal(
+    const Image& image
+)
+{
+    const int width = image.getWidth();
+    const int height = image.getHeight();
+    const int channels = image.getChannels();
+
+    Image output(
+        width,
+        height,
+        channels
+    );
+
+    for (int y = 0; y < height; ++y)
+    {
+        for (int x = 0; x < width; ++x)
+        {
+            const int srcX = width - 1 - x;
+
+            for (int c = 0; c < channels; ++c)
+            {
+                output.at(x, y, c) =
+                    image.at(srcX, y, c);
+            }
+        }
+    }
+
+    return output;
+}
+
+Image Transform::flipVertical(
+    const Image& image
+)
+{
+    const int width = image.getWidth();
+    const int height = image.getHeight();
+    const int channels = image.getChannels();
+
+    Image output(
+        width,
+        height,
+        channels
+    );
+
+    for (int y = 0; y < height; ++y)
+    {
+        const int srcY = height - 1 - y;
+
+        for (int x = 0; x < width; ++x)
+        {
+            for (int c = 0; c < channels; ++c)
+            {
+                output.at(x, y, c) =
+                    image.at(x, srcY, c);
+            }
+        }
+    }
+
+    return output;
+}
+
 }
