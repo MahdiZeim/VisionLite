@@ -1,9 +1,10 @@
 #include "visionlite/transform.hpp"
-
+#include <cmath>
 
 namespace visionlite
 {
 
+constexpr double PI = 3.14159265358979323846;
 
 Image Transform::apply(
     const Image& image,
@@ -298,6 +299,97 @@ Image Transform::flipVertical(
             {
                 output.at(x, y, c) =
                     image.at(x, srcY, c);
+            }
+        }
+    }
+
+    return output;
+}
+
+
+Image Transform::rotate(
+    const Image& image,
+    double angle
+)
+{
+    const int width = image.getWidth();
+    const int height = image.getHeight();
+    const int channels = image.getChannels();
+
+    Image output(
+        width,
+        height,
+        channels
+    );
+
+    const double radians =
+        angle * PI / 180.0;
+
+    const double cosTheta =
+        std::cos(radians);
+
+    const double sinTheta =
+        std::sin(radians);
+
+    const double centerX =
+        (width - 1) / 2.0;
+
+    const double centerY =
+        (height - 1) / 2.0;
+
+    for (int y = 0; y < height; ++y)
+    {
+        for (int x = 0; x < width; ++x)
+        {
+            const double dx =
+                x - centerX;
+
+            const double dy =
+                y - centerY;
+
+            const double srcX =
+                dx * cosTheta +
+                dy * sinTheta +
+                centerX;
+
+            const double srcY =
+               -dx * sinTheta +
+                dy * cosTheta +
+                centerY;
+
+            const int nearestX =
+                static_cast<int>(
+                    std::round(srcX)
+                );
+
+            const int nearestY =
+                static_cast<int>(
+                    std::round(srcY)
+                );
+
+            if (
+                nearestX >= 0 &&
+                nearestX < width &&
+                nearestY >= 0 &&
+                nearestY < height
+            )
+            {
+                for (int c = 0; c < channels; ++c)
+                {
+                    output.at(x, y, c) =
+                        image.at(
+                            nearestX,
+                            nearestY,
+                            c
+                        );
+                }
+            }
+            else
+            {
+                for (int c = 0; c < channels; ++c)
+                {
+                    output.at(x, y, c) = 0;
+                }
             }
         }
     }

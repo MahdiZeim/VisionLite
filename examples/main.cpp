@@ -81,21 +81,36 @@ std::cout
     << std::endl;*/
 
 
-
-auto horizontal =
-    visionlite::Transform::flipHorizontal(img);
+auto rotate45 =
+    visionlite::Transform::rotate(img, 45);
 
 visionlite::BMP::save(
-    "assets/output/flip_horizontal.bmp",
-    horizontal
+    "assets/output/rotate45.bmp",
+    rotate45
 );
 
-auto vertical =
-    visionlite::Transform::flipVertical(img);
+auto rotate90 =
+    visionlite::Transform::rotate(img, 90);
 
 visionlite::BMP::save(
-    "assets/output/flip_vertical.bmp",
-    vertical
+    "assets/output/rotate90.bmp",
+    rotate90
+);
+
+auto rotate180 =
+    visionlite::Transform::rotate(img, 180);
+
+visionlite::BMP::save(
+    "assets/output/rotate180.bmp",
+    rotate180
+);
+
+auto rotate270 =
+    visionlite::Transform::rotate(img, 270);
+
+visionlite::BMP::save(
+    "assets/output/rotate270.bmp",
+    rotate270
 );
 
     return 0;
