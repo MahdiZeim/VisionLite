@@ -47,43 +47,6 @@ Whether you are studying Digital Image Processing, Computer Vision, Artificial I
 ---
 
 
-## 🚀 Quick Start
-
-Clone the repository
-
-```bash
-git clone https://github.com/MahdiZeim/VisionLite.git
-cd VisionLite
-```
-
-Configure the project
-
-```bash
-cmake -S . -B build
-```
-
-Build
-
-```bash
-cmake --build build
-```
-
-Run the demo
-
-Windows
-
-```bash
-.\build\Debug\visionlite_demo.exe
-```
-
-Linux
-
-```bash
-./build/visionlite_demo
-```
-
----
-
 ## 📸 Showcase
 
 VisionLite includes a collection of classic image processing algorithms implemented from scratch in modern C++. Below are examples of the implemented filters and morphological operations.
@@ -144,33 +107,6 @@ Implemented morphology operations include:
 - Morphological Gradient
 - Top Hat
 - Black Hat
-
-# Project Architecture
-
-```
-                   +--------------------+
-                   |       Image        |
-                   +--------------------+
-                              |
-        +---------------------+----------------------+
-        |                     |                      |
-        ▼                     ▼                      ▼
-    Filters              Analyzer              Enhancer
-        |                     |                      |
-        +---------------------+----------------------+
-                              |
-                              ▼
-                      Processed Image
-```
-
-The project follows a modular architecture where each component has a single responsibility.
-
-- **Image** manages pixel data.
-- **Filters** perform image filtering operations.
-- **Analyzer** extracts image statistics.
-- **Enhancer** improves image quality.
-
-This architecture makes the library easier to maintain, extend, and understand.
 
 ---
 
@@ -256,23 +192,39 @@ Before building the project, make sure you have the following tools installed.
 
 ---
 
+## 🚀 Quick Start
 
-# Example Output
+Clone the repository
 
-```
-BMP Loaded: 1280x853
-
-BMP Saved: assets/output/gray.bmp
-
-Mean intensity: 104.62
-
-Contrast: 66.12
+```bash
+git clone https://github.com/MahdiZeim/VisionLite.git
+cd VisionLite
 ```
 
-The output images will be generated inside:
+Configure the project
 
+```bash
+cmake -S . -B build
 ```
-assets/output/
+
+Build
+
+```bash
+cmake --build build
+```
+
+Run the demo
+
+Windows
+
+```bash
+.\build\Debug\visionlite_demo.exe
+```
+
+Linux
+
+```bash
+./build/visionlite_demo
 ```
 
 ---
@@ -311,83 +263,6 @@ visionlite::BMP::save("assets/output/gray.bmp");
 
 ---
 
-# Implemented Algorithms
-
-## Basic Filters
-
-| Algorithm | Description |
-|------------|-------------|
-| Grayscale | Converts an RGB image to grayscale |
-| Brightness | Increases or decreases image brightness |
-| Contrast | Adjusts image contrast |
-| Threshold | Converts grayscale images into binary images |
-
----
-
-## Geometric Transformations
-
-| Algorithm | Description |
-|------------|-------------|
-| Horizontal Flip | Mirrors the image horizontally |
-| Vertical Flip | Mirrors the image vertically |
-| Rotation | Rotates the image by multiples of 90 degrees |
-
----
-
-## Convolution Filters
-
-VisionLite provides a generic convolution engine that can execute different kernels without changing the filtering pipeline.
-
-Implemented kernels include:
-
-- Box Blur
-- Gaussian Blur
-- Sharpen
-- Sobel X
-- Sobel Y
-
-The modular kernel system also allows developers to create custom convolution kernels.
-
----
-
-## Image Analyzer
-
-The Analyzer module extracts useful statistics from an image.
-
-Current features include:
-
-- Histogram Generation
-- Mean Intensity
-- Minimum Intensity
-- Maximum Intensity
-- Dominant Intensity
-- Contrast Measurement
-
-These statistics are useful for preprocessing, computer vision pipelines, and image enhancement algorithms.
-
----
-
-## Image Enhancement
-
-VisionLite currently implements several classical enhancement algorithms.
-
-### Auto Brightness
-
-Automatically adjusts image brightness based on the average intensity.
-
-### Auto Contrast
-
-Expands the intensity range using the minimum and maximum pixel values.
-
-### Gamma Correction
-
-Applies nonlinear intensity transformation using gamma correction.
-
-### Histogram Equalization
-
-Improves the distribution of pixel intensities by equalizing the histogram, making image details more visible in many low-contrast images.
-
----
 
 # Performance
 
@@ -528,14 +403,6 @@ For questions, suggestions, or collaboration opportunities:
 - **Mohammadmahdi Amiri**
 - 📧 mamiri@eng.uk.ac.ir
 - 📧 mahdiamiri511@gmail.com
-
----
-
-# License
-
-This project is released under the MIT License.
-
-See the LICENSE file for more information.
 
 ---
 
