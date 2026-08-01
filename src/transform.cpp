@@ -122,4 +122,64 @@ Image Transform::applyPixel(
     return result;
 }
 
+
+Image Transform::resize(
+    const Image& image,
+    int newWidth,
+    int newHeight
+)
+{
+    if (newWidth <= 0 || newHeight <= 0)
+    {
+        return image;
+    }
+
+    const int srcWidth = image.getWidth();
+    const int srcHeight = image.getHeight();
+    const int channels = image.getChannels();
+
+    Image output(
+        newWidth,
+        newHeight,
+        channels
+    );
+
+    const float xScale =
+        static_cast<float>(srcWidth) / newWidth;
+
+    const float yScale =
+        static_cast<float>(srcHeight) / newHeight;
+
+    for (int y = 0; y < newHeight; ++y)
+    {
+        int srcY =
+            static_cast<int>(y * yScale);
+
+        if (srcY >= srcHeight)
+        {
+            srcY = srcHeight - 1;
+        }
+
+        for (int x = 0; x < newWidth; ++x)
+        {
+            int srcX =
+                static_cast<int>(x * xScale);
+
+            if (srcX >= srcWidth)
+            {
+                srcX = srcWidth - 1;
+            }
+
+            for (int c = 0; c < channels; ++c)
+            {
+                output.at(x, y, c) =
+                    image.at(srcX, srcY, c);
+            }
+        }
+    }
+
+    return output;
+}
+
+
 }

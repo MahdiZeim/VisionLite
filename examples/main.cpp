@@ -4,8 +4,10 @@
 #include "visionlite/convolution.hpp"
 #include "visionlite/analyzer.hpp"
 #include "visionlite/enhancer.hpp"
-#include <iostream>
 #include "visionlite/morphology.hpp"
+#include "visionlite/transform.hpp"
+
+#include <iostream>
 
 int main()
 {
@@ -79,16 +81,29 @@ std::cout
     << std::endl;*/
 
 
-    auto grayImage =
-    visionlite::Filters::grayscale(img);
+auto resizedHalf =
+    visionlite::Transform::resize(
+        img,
+        img.getWidth() / 2,
+        img.getHeight() / 2
+    );
 
-    auto blackHat = visionlite::Morphology::blackHat(grayImage);
-
-    visionlite::BMP::save(
-    "assets/output/blackHat.bmp",
-    blackHat
+visionlite::BMP::save(
+    "assets/output/resize_half.bmp",
+    resizedHalf
 );
 
+auto resizedDouble =
+    visionlite::Transform::resize(
+        img,
+        img.getWidth() * 2,
+        img.getHeight() * 2
+    );
+
+visionlite::BMP::save(
+    "assets/output/resize_double.bmp",
+    resizedDouble
+);
    
     return 0;
 }

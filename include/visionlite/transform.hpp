@@ -26,6 +26,33 @@ public:
         std::function<Pixel(Pixel)> operation
     );
 
+    static Image resize(
+        const Image& image,
+        int newWidth,
+        int newHeight
+    );
+
+    static Image crop(
+        const Image& image,
+        int x,
+        int y,
+        int width,
+        int height
+    );
+
+    static Image flipHorizontal(
+        const Image& image
+    );
+
+    static Image flipVertical(
+        const Image& image
+    );
+
+    static Image rotate(
+        const Image& image,
+        double angle
+    );
+
 };
 
 }
