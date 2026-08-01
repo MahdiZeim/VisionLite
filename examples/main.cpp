@@ -80,30 +80,34 @@ std::cout
     << contrast
     << std::endl;*/
 
-
-auto resizedHalf =
-    visionlite::Transform::resize(
+   
+auto cropCenter =
+    visionlite::Transform::crop(
         img,
+        img.getWidth() / 4,
+        img.getHeight() / 4,
         img.getWidth() / 2,
         img.getHeight() / 2
     );
 
 visionlite::BMP::save(
-    "assets/output/resize_half.bmp",
-    resizedHalf
+    "assets/output/crop_center.bmp",
+    cropCenter
 );
 
-auto resizedDouble =
-    visionlite::Transform::resize(
+auto cropCorner =
+    visionlite::Transform::crop(
         img,
-        img.getWidth() * 2,
-        img.getHeight() * 2
+        0,
+        0,
+        200,
+        200
     );
 
 visionlite::BMP::save(
-    "assets/output/resize_double.bmp",
-    resizedDouble
+    "assets/output/crop_corner.bmp",
+    cropCorner
 );
-   
+
     return 0;
 }

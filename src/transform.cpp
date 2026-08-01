@@ -181,5 +181,65 @@ Image Transform::resize(
     return output;
 }
 
+Image Transform::crop(
+    const Image& image,
+    int x,
+    int y,
+    int width,
+    int height
+)
+{
+    const int srcWidth = image.getWidth();
+    const int srcHeight = image.getHeight();
+    const int channels = image.getChannels();
+
+    // Clamp starting position
+    if (x < 0)
+        x = 0;
+
+    if (y < 0)
+        y = 0;
+
+    if (x >= srcWidth || y >= srcHeight)
+    {
+        return Image(0, 0, channels);
+    }
+
+    // Clamp crop size
+    if (x + width > srcWidth)
+        width = srcWidth - x;
+
+    if (y + height > srcHeight)
+        height = srcHeight - y;
+
+    if (width <= 0 || height <= 0)
+    {
+        return Image(0, 0, channels);
+    }
+
+    Image output(
+        width,
+        height,
+        channels
+    );
+
+    for (int row = 0; row < height; ++row)
+    {
+        for (int col = 0; col < width; ++col)
+        {
+            for (int c = 0; c < channels; ++c)
+            {
+                output.at(col, row, c) =
+                    image.at(
+                        x + col,
+                        y + row,
+                        c
+                    );
+            }
+        }
+    }
+
+    return output;
+}
 
 }
