@@ -34,6 +34,7 @@ add_library(
     src/analyzer.cpp
     src/enhancer.cpp
     src/morphology.cpp
+    src/drawing.cpp
 )
 
 
