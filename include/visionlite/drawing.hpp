@@ -17,6 +17,15 @@ public:
         const Color& color
     );
 
+    static void line(
+    Image& image,
+    int x0,
+    int y0,
+    int x1,
+    int y1,
+    const Color& color
+);
+
 };
 
 }

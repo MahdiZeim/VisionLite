@@ -1,4 +1,5 @@
 #include "visionlite/bmp.hpp"
+#include "visionlite/image.hpp"
 #include "visionlite/filters.hpp"
 #include "visionlite/kernel.hpp"
 #include "visionlite/convolution.hpp"
@@ -28,76 +29,32 @@ int main()
           << " channels)"
           << std::endl;
           
-/*
-auto binary =
-    visionlite::Filters::threshold(
-        img,
-        128
-    );
-
-
-visionlite::BMP::save(
-    "assets/output/threshold.bmp",
-    binary
+visionlite::Image canvas(
+    500,
+    500,
+    3
 );
-*/
-/*
-auto edgeY =
-    visionlite::Filters::edgeDetectY(
-        img
-    );
-
-visionlite::BMP::save(
-    "assets/output/edge_y.bmp",
-    edgeY
-);
-*/
-
-/*auto min =
-    visionlite::Analyzer::minIntensity(img);
-
-
-auto max =
-    visionlite::Analyzer::maxIntensity(img);
-
-
-std::cout
-    << "Min intensity: "
-    << (int)min
-    << std::endl;
-
-
-std::cout
-    << "Max intensity: "
-    << (int)max
-    << std::endl;
-*/
-
-/*float contrast =
-    visionlite::Analyzer::contrast(img);
-
-
-std::cout
-    << "Contrast: "
-    << contrast
-    << std::endl;*/
-
 
 visionlite::Color red{255,0,0};
+visionlite::Color green{0,255,0};
+visionlite::Color blue{0,0,255};
+visionlite::Color yellow{255,255,0};
+visionlite::Color white{255,255,255};
 
-for(int i = 1; i<= 200; i++){
-    for(int j = 1 ; j<=200;j++){
-visionlite::Drawing::pixel(
-    img,
-    i,
-    j,
-    red
-);
-}
-}
+
+visionlite::Drawing::line(canvas, 20, 20, 480, 20, red);          // افقی
+visionlite::Drawing::line(canvas, 20, 20, 20, 480, green);        // عمودی
+visionlite::Drawing::line(canvas, 20, 20, 480, 480, blue);        // قطر اصلی
+visionlite::Drawing::line(canvas, 480, 20, 20, 480, yellow);      // قطر مخالف
+visionlite::Drawing::line(canvas, 250, 20, 480, 300, white);      // شیب کم
+visionlite::Drawing::line(canvas, 20, 250, 150, 480, red);        // شیب زیاد
+visionlite::Drawing::line(canvas, 480, 250, 350, 480, green);     // شیب منفی
+visionlite::Drawing::line(canvas, 250, 480, 20, 350, blue);       // شیب منفی دیگر
+
+
 visionlite::BMP::save(
-    "assets/output/pixel.bmp",
-    img
+    "assets/output/lines.bmp",
+    canvas
 );
 
     return 0;
