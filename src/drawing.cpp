@@ -8,6 +8,26 @@ namespace visionlite
     namespace
 {
 
+void plotFilledCircleLines(
+    visionlite::Image& image,
+    int cx,
+    int cy,
+    int x,
+    int y,
+    const visionlite::Color& color
+)
+{
+    using visionlite::Drawing;
+
+    //Top & Bottom 
+    Drawing::line(image, cx - x, cy + y, cx + x, cy + y, color);
+    Drawing::line(image, cx - x, cy - y, cx + x, cy - y, color);
+
+    //Left & Right
+    Drawing::line(image, cx - y, cy + x, cx + y, cy + x, color);
+    Drawing::line(image, cx - y, cy - x, cx + y, cy - x, color);
+}
+
 void plotCirclePoints(
     Image& image,
     int cx,
@@ -228,6 +248,49 @@ void Drawing::circle(
     while (x >= y)
     {
         plotCirclePoints(
+            image,
+            centerX,
+            centerY,
+            x,
+            y,
+            color
+        );
+
+        ++y;
+
+        if (decision < 0)
+        {
+            decision += 2 * y + 1;
+        }
+        else
+        {
+            --x;
+            decision += 2 * (y - x) + 1;
+        }
+    }
+}
+
+void Drawing::filledCircle(
+    Image& image,
+    int centerX,
+    int centerY,
+    int radius,
+    const Color& color
+)
+{
+    if (radius <= 0)
+    {
+        return;
+    }
+
+    int x = radius;
+    int y = 0;
+
+    int decision = 1 - radius;
+
+    while (x >= y)
+    {
+        plotFilledCircleLines(
             image,
             centerX,
             centerY,

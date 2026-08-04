@@ -43,24 +43,23 @@ visionlite::Color blue{0,0,255};
 visionlite::Color yellow{255,255,0};
 
 
-visionlite::Drawing::circle(canvas,300,300,200,white);
+visionlite::Drawing::filledCircle(canvas,300,300,180,red);
+visionlite::Drawing::circle(canvas,300,300,180,white);
 
-visionlite::Drawing::circle(canvas,300,300,150,red);
+visionlite::Drawing::filledCircle(canvas,120,120,60,green);
+visionlite::Drawing::circle(canvas,120,120,60,white);
 
-visionlite::Drawing::circle(canvas,300,300,100,green);
+visionlite::Drawing::filledCircle(canvas,480,120,40,blue);
+visionlite::Drawing::circle(canvas,480,120,40,white);
 
-visionlite::Drawing::circle(canvas,300,300,50,blue);
+visionlite::Drawing::filledCircle(canvas,120,480,90,yellow);
+visionlite::Drawing::circle(canvas,120,480,90,white);
 
-visionlite::Drawing::circle(canvas,120,120,70,yellow);
-
-visionlite::Drawing::circle(canvas,480,120,40,red);
-
-visionlite::Drawing::circle(canvas,120,480,90,green);
-
-visionlite::Drawing::circle(canvas,480,480,60,blue);
+visionlite::Drawing::filledCircle(canvas,480,480,70,green);
+visionlite::Drawing::circle(canvas,480,480,70,white);
 
 visionlite::BMP::save(
-    "assets/output/circles.bmp",
+    "assets/output/filled_circles.bmp",
     canvas
 );
     return 0;

@@ -44,7 +44,15 @@ public:
     const Color& color
 );
 
-static void circle(
+    static void circle(
+    Image& image,
+    int centerX,
+    int centerY,
+    int radius,
+    const Color& color
+);
+
+    static void filledCircle(
     Image& image,
     int centerX,
     int centerY,
