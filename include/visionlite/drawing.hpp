@@ -44,6 +44,13 @@ public:
     const Color& color
 );
 
+static void circle(
+    Image& image,
+    int centerX,
+    int centerY,
+    int radius,
+    const Color& color
+);
 
 };
 

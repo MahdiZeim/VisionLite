@@ -1,7 +1,36 @@
 #include "visionlite/drawing.hpp"
 
+
+
 namespace visionlite
 {
+
+    namespace
+{
+
+void plotCirclePoints(
+    Image& image,
+    int cx,
+    int cy,
+    int x,
+    int y,
+    const Color& color
+)
+{
+    Drawing::pixel(image, cx + x, cy + y, color);
+    Drawing::pixel(image, cx + y, cy + x, color);
+
+    Drawing::pixel(image, cx - x, cy + y, color);
+    Drawing::pixel(image, cx - y, cy + x, color);
+
+    Drawing::pixel(image, cx - x, cy - y, color);
+    Drawing::pixel(image, cx - y, cy - x, color);
+
+    Drawing::pixel(image, cx + x, cy - y, color);
+    Drawing::pixel(image, cx + y, cy - x, color);
+}
+
+}
 
 void Drawing::pixel(
     Image& image,
@@ -175,6 +204,49 @@ void Drawing::filledRectangle(
             y + row,
             color
         );
+    }
+}
+
+void Drawing::circle(
+    Image& image,
+    int centerX,
+    int centerY,
+    int radius,
+    const Color& color
+)
+{
+    if (radius <= 0)
+    {
+        return;
+    }
+
+    int x = radius;
+    int y = 0;
+
+    int decision = 1 - radius;
+
+    while (x >= y)
+    {
+        plotCirclePoints(
+            image,
+            centerX,
+            centerY,
+            x,
+            y,
+            color
+        );
+
+        ++y;
+
+        if (decision < 0)
+        {
+            decision += 2 * y + 1;
+        }
+        else
+        {
+            --x;
+            decision += 2 * (y - x) + 1;
+        }
     }
 }
 
