@@ -29,33 +29,68 @@ int main()
           << " channels)"
           << std::endl;
           
+
 visionlite::Image canvas(
     500,
     500,
     3
 );
 
+visionlite::Color white{255,255,255};
 visionlite::Color red{255,0,0};
 visionlite::Color green{0,255,0};
 visionlite::Color blue{0,0,255};
 visionlite::Color yellow{255,255,0};
-visionlite::Color white{255,255,255};
 
 
-visionlite::Drawing::line(canvas, 20, 20, 480, 20, red);          // افقی
-visionlite::Drawing::line(canvas, 20, 20, 20, 480, green);        // عمودی
-visionlite::Drawing::line(canvas, 20, 20, 480, 480, blue);        // قطر اصلی
-visionlite::Drawing::line(canvas, 480, 20, 20, 480, yellow);      // قطر مخالف
-visionlite::Drawing::line(canvas, 250, 20, 480, 300, white);      // شیب کم
-visionlite::Drawing::line(canvas, 20, 250, 150, 480, red);        // شیب زیاد
-visionlite::Drawing::line(canvas, 480, 250, 350, 480, green);     // شیب منفی
-visionlite::Drawing::line(canvas, 250, 480, 20, 350, blue);       // شیب منفی دیگر
-
-
-visionlite::BMP::save(
-    "assets/output/lines.bmp",
-    canvas
+visionlite::Drawing::rectangle(
+    canvas,
+    20,
+    20,
+    120,
+    80,
+    white
 );
 
+visionlite::Drawing::rectangle(
+    canvas,
+    180,
+    20,
+    80,
+    120,
+    red
+);
+
+visionlite::Drawing::rectangle(
+    canvas,
+    300,
+    50,
+    150,
+    150,
+    green
+);
+
+visionlite::Drawing::rectangle(
+    canvas,
+    50,
+    200,
+    200,
+    50,
+    blue
+);
+
+visionlite::Drawing::rectangle(
+    canvas,
+    280,
+    260,
+    180,
+    100,
+    yellow
+);
+
+visionlite::BMP::save(
+    "assets/output/rectangles.bmp",
+    canvas
+);
     return 0;
 }

@@ -26,6 +26,15 @@ public:
     const Color& color
 );
 
+    static void rectangle(
+    Image& image,
+    int x,
+    int y,
+    int width,
+    int height,
+    const Color& color
+);
+
 };
 
 }

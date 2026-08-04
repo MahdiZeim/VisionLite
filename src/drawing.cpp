@@ -90,4 +90,62 @@ void Drawing::line(
     }
 }
 
+void Drawing::rectangle(
+    Image& image,
+    int x,
+    int y,
+    int width,
+    int height,
+    const Color& color
+)
+{
+    if (width <= 0 || height <= 0)
+    {
+        return;
+    }
+
+    const int x2 = x + width - 1;
+    const int y2 = y + height - 1;
+
+    // Top
+    Drawing::line(
+        image,
+        x,
+        y,
+        x2,
+        y,
+        color
+    );
+
+    // Bottom
+    Drawing::line(
+        image,
+        x,
+        y2,
+        x2,
+        y2,
+        color
+    );
+
+    // Left
+    Drawing::line(
+        image,
+        x,
+        y,
+        x,
+        y2,
+        color
+    );
+
+    // Right
+    Drawing::line(
+        image,
+        x2,
+        y,
+        x2,
+        y2,
+        color
+    );
+}
+
 }
