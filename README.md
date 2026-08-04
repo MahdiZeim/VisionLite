@@ -32,8 +32,8 @@ Whether you are studying Digital Image Processing, Computer Vision, Artificial I
 | Brightness / Contrast | ✅ |
 | Gamma Correction | ✅ |
 | Morphological Operations | ✅ |
-| Drawing | 🚧 |
-| Geometric Transformations | 🚧 |
+| Drawing | ✅ |
+| Geometric Transformations | ✅ |
 | Color Spaces | 🚧 |
 
 ---
@@ -67,21 +67,6 @@ VisionLite includes a collection of classic image processing algorithms implemen
   <img src="assets/demo/filters_overview.png" width="100%">
 </p>
 
-Implemented filters include:
-
-- Grayscale
-- Threshold
-- Brightness Adjustment
-- Contrast Adjustment
-- Gamma Correction
-- Auto Brightness
-- Auto Contrast
-- Histogram Equalization
-- Sharpen
-- Box Blur
-- Gaussian Blur
-- Edge Detection (Horizontal & Vertical)
-
 ---
 
 ### Morphological Operations
@@ -98,15 +83,14 @@ Implemented filters include:
   <img src="assets/demo/morphology_overview.png" width="100%">
 </p>
 
-Implemented morphology operations include:
+---
 
-- Erosion
-- Dilation
-- Opening
-- Closing
-- Morphological Gradient
-- Top Hat
-- Black Hat
+### Transforms & Drawing Operations
+
+
+<p align="center">
+  <img src="assets/demo/transforms&drawing_overview.png" width="100%">
+</p>
 
 ---
 
@@ -295,37 +279,6 @@ It can also serve as a reference implementation for educational purposes or as a
 
 ---
 
-## 🛣️ Roadmap
-
-### v0.1
-
-- [x] Image class
-- [x] BMP reader
-- [x] Filters
-
-### v0.2
-
-- [x] Morphology
-- [x] Histogram Equalization
-- [x] Documentation
-
-
-### v0.3
-
-- [ ] Drawing
-- [ ] Resize
-- [ ] Rotation
-
-### v0.4
-
-- [ ] Color Spaces
-- [ ] Feature Detection
-
-### v1.0
-
-- [ ] Stable API
-- [ ] Complete Documentation
----
 
 # Contributing
 
