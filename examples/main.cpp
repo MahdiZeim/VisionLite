@@ -43,53 +43,22 @@ visionlite::Color blue{0,0,255};
 visionlite::Color yellow{255,255,0};
 
 
-visionlite::Drawing::rectangle(
-    canvas,
-    20,
-    20,
-    120,
-    80,
-    white
-);
+visionlite::Drawing::filledRectangle(canvas, 20, 20, 100, 80, red);
 
-visionlite::Drawing::rectangle(
-    canvas,
-    180,
-    20,
-    80,
-    120,
-    red
-);
+visionlite::Drawing::filledRectangle(canvas, 150, 40, 150, 100, green);
 
-visionlite::Drawing::rectangle(
-    canvas,
-    300,
-    50,
-    150,
-    150,
-    green
-);
+visionlite::Drawing::filledRectangle(canvas, 80, 180, 250, 60, blue);
 
-visionlite::Drawing::rectangle(
-    canvas,
-    50,
-    200,
-    200,
-    50,
-    blue
-);
+visionlite::Drawing::filledRectangle(canvas, 320, 250, 120, 180, yellow);
 
-visionlite::Drawing::rectangle(
-    canvas,
-    280,
-    260,
-    180,
-    100,
-    yellow
-);
+visionlite::Drawing::rectangle(canvas, 15, 15, 110, 90, white);
+visionlite::Drawing::rectangle(canvas, 145, 35, 160, 110, white);
+visionlite::Drawing::rectangle(canvas, 75, 175, 260, 70, white);
+visionlite::Drawing::rectangle(canvas, 315, 245, 130, 190, white);
+
 
 visionlite::BMP::save(
-    "assets/output/rectangles.bmp",
+    "assets/output/filled_rectangles.bmp",
     canvas
 );
     return 0;

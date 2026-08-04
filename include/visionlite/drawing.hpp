@@ -35,6 +35,16 @@ public:
     const Color& color
 );
 
+    static void filledRectangle(
+    Image& image,
+    int x,
+    int y,
+    int width,
+    int height,
+    const Color& color
+);
+
+
 };
 
 }

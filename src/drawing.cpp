@@ -148,4 +148,34 @@ void Drawing::rectangle(
     );
 }
 
+// Filled rectangle using horizontal scan lines.
+void Drawing::filledRectangle(
+    Image& image,
+    int x,
+    int y,
+    int width,
+    int height,
+    const Color& color
+)
+{
+    if (width <= 0 || height <= 0)
+    {
+        return;
+    }
+
+    const int x2 = x + width - 1;
+
+    for (int row = 0; row < height; ++row)
+    {
+        Drawing::line(
+            image,
+            x,
+            y + row,
+            x2,
+            y + row,
+            color
+        );
+    }
+}
+
 }
