@@ -85,7 +85,7 @@ VisionLite includes a collection of classic image processing algorithms implemen
 
 ---
 
-### Transforms & Drawing Operations
+### Drawing & Transform Operations
 
 
 <p align="center">
